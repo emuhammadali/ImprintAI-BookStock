@@ -1,9 +1,10 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
 import { users, tenants } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { signToken, hashPassword } from "@/lib/auth";
 import { successResponse, errorResponse } from "@/lib/api-utils";
+import { REGISTERABLE_ROLES } from "@/lib/constants";
 import { cookies } from "next/headers";
 
 export async function POST(request: NextRequest) {
@@ -11,8 +12,18 @@ export async function POST(request: NextRequest) {
     const { email, password, firstName, lastName, tenantName, role } =
       await request.json();
 
+    // ✅ Basic validation
     if (!email || !password || !tenantName) {
       return errorResponse("Missing required fields");
+    }
+
+    // ✅ Role validation (sahi tarika)
+    const allowedRoles = REGISTERABLE_ROLES.map((r) => r.value);
+    if (!role || !allowedRoles.includes(role)) {
+      return NextResponse.json(
+        { error: "Invalid role selected" },
+        { status: 400 }
+      );
     }
 
     // Check existing user

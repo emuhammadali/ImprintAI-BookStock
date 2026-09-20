@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { REGISTERABLE_ROLES } from "@/lib/constants";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -33,7 +34,10 @@ export default function RegisterPage() {
         setError(data.error || "Registration failed");
         return;
       }
-      router.push(`/dashboard/${form.role}`);
+
+      // ✅ Beta Reader ka route "/dashboard/beta-reader" hai, underscore ko hyphen karein
+      const dashboardPath = form.role.replace(/_/g, "-");
+      router.push(`/dashboard/${dashboardPath}`);
     } catch {
       setError("Network error");
     } finally {
@@ -135,11 +139,11 @@ export default function RegisterPage() {
               onChange={(e) => setForm({ ...form, role: e.target.value })}
               className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              <option value="author">Author</option>
-              <option value="editor">Editor</option>
-              <option value="publisher">Publisher</option>
-              <option value="beta_reader">Beta Reader</option>
-              <option value="warehouse_staff">Warehouse Staff</option>
+              {REGISTERABLE_ROLES.map((role) => (
+                <option key={role.value} value={role.value}>
+                  {role.label}
+                </option>
+              ))}
             </select>
           </div>
           {error && (

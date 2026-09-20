@@ -11,6 +11,14 @@ export const ROLES = {
   WAREHOUSE_STAFF: "warehouse_staff",
 } as const;
 
+// ✅ Yeh roles register form mein dikhenge (Admin aur Warehouse Staff NAHI)
+export const REGISTERABLE_ROLES = [
+  { value: ROLES.AUTHOR, label: "Author" },
+  { value: ROLES.EDITOR, label: "Editor" },
+  { value: ROLES.PUBLISHER, label: "Publisher" },
+  { value: ROLES.BETA_READER, label: "Beta Reader" },
+] as const;
+
 export const MANUSCRIPT_STATUSES = [
   "draft",
   "in_review",
