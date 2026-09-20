@@ -192,7 +192,7 @@ export default function LandingPage() {
               {
                 title: "Beta Reader",
                 desc: "Assigned manuscripts, distraction-free reading, annotation tools, structured feedback submission.",
-                href: "/login?role=beta_reader",
+                href: "/login?role=beta-reader",
                 gradient: "from-emerald-500 to-green-600",
               },
               {
