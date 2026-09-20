@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #6366f1;
+  --color-primary-light: #818cf8;
+  --color-primary-dark: #4f46e5;
+  --color-secondary: #ec4899;
+  --color-accent: #14b8a6;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --sidebar-width: 260px;
+  --header-height: 64px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 3px;
+}
+
+/* Smooth transitions */
+.transition-smooth {
+  transition: all 0.2s ease;
+}
+
+/* Card hover effect */
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+/* Status badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+.badge-draft {
+  background: #f1f5f9;
+  color: #475569;
+}
+.badge-in_review {
+  background: #fef3c7;
+  color: #92400e;
+}
+.badge-revision {
+  background: #fce7f3;
+  color: #9d174d;
+}
+.badge-approved {
+  background: #dcfce7;
+  color: #166534;
+}
+.badge-published {
+  background: #dbeafe;
+  color: #1e40af;
+}
+.badge-archived {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* Kanban board */
+.kanban-column {
+  min-height: 200px;
+}
+
+/* Pulse animation for live data */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* Waveform animation */
+@keyframes waveform {
+  0%, 100% { height: 4px; }
+  50% { height: 24px; }
+}
+
+/* Grid pattern for backgrounds */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Table styles */
+.table-row-hover:hover {
+  background-color: #f8fafc;
+}
+
+/* Loading skeleton */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Blockchain chain link */
+.chain-link {
+  position: relative;
+  padding-left: 2rem;
+}
+.chain-link::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #6366f1, #a5b4fc);
+}
+.chain-link::after {
+  content: '⬡';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6366f1;
+  font-size: 0.75rem;
+}
+
+/* Print styles */
+@media print {
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+}
